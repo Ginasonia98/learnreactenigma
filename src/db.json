@@ -1,0 +1,94 @@
+{
+  "wishlist-items": [
+    {
+      "id": "1",
+      "name": "Coding"
+    },
+    {
+      "id": "2",
+      "name": "Makan"
+    },
+    {
+      "id": "3",
+      "name": "Mandi"
+    },
+    {
+      "id": "44e0",
+      "name": "test"
+    },
+    {
+      "id": "95af",
+      "name": "jalan"
+    },
+    {
+      "id": "45b3",
+      "name": "123"
+    },
+    {
+      "id": "081c",
+      "name": "senam"
+    },
+    {
+      "id": "69e2",
+      "name": "hahah"
+    },
+    {
+      "id": "6e7c",
+      "name": "gym"
+    },
+    {
+      "id": "5925",
+      "name": "ahaha"
+    },
+    {
+      "id": "c86e",
+      "name": "hel"
+    },
+    {
+      "id": "5e5a",
+      "name": "yoga"
+    },
+    {
+      "id": "d0af",
+      "name": "Tinju"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "email": "lala@gmail.com",
+      "username": "lala mus",
+      "password": "lalasayangmus"
+    },
+    {
+      "id": "2",
+      "email": "dani@gmail.com",
+      "username": "danitya",
+      "password": "danihardwork"
+    },
+    {
+      "id": "3",
+      "email": "caca@gmail.com",
+      "username": "camy",
+      "password": "cacacayang"
+    },
+    {
+      "id": "8eb9",
+      "email": "ginas.tobing@gmail.com",
+      "username": "Ginas",
+      "password": "Ginachik"
+    },
+    {
+      "id": "a77f",
+      "email": "juju@gmail.com",
+      "username": "juju",
+      "password": "jujujujuj"
+    },
+    {
+      "id": "a6fc",
+      "email": "hhaua@gmail.com",
+      "username": "hahah",
+      "password": "haaaaaaaaa"
+    }
+  ]
+}
