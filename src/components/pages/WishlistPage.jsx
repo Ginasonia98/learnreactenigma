@@ -74,6 +74,13 @@ const WishlistPage = () => {
       >
         Sign up now!
       </Link>
+      <br/>
+      <Link
+        to="/"
+        className="text-blue-500 hover:underline flex justify-center items-center mt-3"
+      >
+        Back Home
+      </Link>
       <p className="text-center text-xl font-semibold">
         Global count : {counterSelector.count}
       </p>

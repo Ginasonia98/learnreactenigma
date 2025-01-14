@@ -90,5 +90,18 @@
       "username": "hahah",
       "password": "haaaaaaaaa"
     }
-  ]
-}
+  ],
+    "dashboard-sales": [
+      {
+        "totalUsers": 6,
+        "sales": 45000,
+        "pendingOrders": 67
+      },
+      {
+        "totalUsers": 5,
+        "sales": 21000,
+        "pendingOrders": 7
+      }
+    ]
+  }
+  
