@@ -12,6 +12,11 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { axiosInstance } from "../../lib/axios"; // Import axios instance for requests
 import { useNavigate, Link } from "react-router-dom";
+import Header from "../Header";
+import {
+  SignUpContextConsumer,
+  SignUpContextProvider,
+} from "../../context/SignUpContext";
 
 // Schema for the form validation
 const signUpFormSchema = z.object({
@@ -61,71 +66,92 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="flex h-screen items-center justify-center">
-      <Card className="w-[300px]">
-        <CardHeader className="font-semibold text-lg">Sign up!</CardHeader>
-        <Divider />
-        <CardBody>
-          <form
-            onSubmit={form.handleSubmit(registerUser)}
-            className="flex flex-col gap-4"
-          >
-            {/* isInvalid: Menandakan jika ada kesalahan validasi.
+    //membungkus satu page kita, lalu kita kasih prop yang bernama value yang
+    //isinya sama dengan yang ada di create context
+    <SignUpContextProvider
+      value={{
+        title: "Hello World",
+      }}
+    >
+      {/* membungkus 1 page sehingga 1 komponen memiliki akses ke konteks yang ada  */}
+      <Header />
+      {/* untuk mendapatkan value kita bisa gunakan SignUpContextConsumer 
+      lalu kita kasih sebuah function yang function nya secara langsung
+      return sebuah komponen*/}
+      <SignUpContextConsumer>
+        {/* function nya menerima param dimana paramnya adalah data yang sudah
+        ada di SignUpContext */}
+        {(context) => {
+          return <p className="text-center font-semibold">{context.title}</p>;
+        }}
+      </SignUpContextConsumer>
+
+      <div className="flex h-screen items-center justify-center">
+        <Card className="w-[300px]">
+          <CardHeader className="font-semibold text-lg">Sign up!</CardHeader>
+          <Divider />
+          <CardBody>
+            <form
+              onSubmit={form.handleSubmit(registerUser)}
+              className="flex flex-col gap-4"
+            >
+              {/* isInvalid: Menandakan jika ada kesalahan validasi.
             errorMessage: Menampilkan pesan error jika validasi gagal. */}
-            <Controller
-              name="email"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Input
-                  {...field}
-                  type="email"
-                  label="Email"
-                  size="sm"
-                  isInvalid={Boolean(fieldState.error)}
-                  errorMessage={fieldState.error?.message}
-                />
-              )}
-            />
-            <Controller
-              name="username"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Input
-                  {...field}
-                  label="Username"
-                  size="sm"
-                  isInvalid={Boolean(fieldState.error)}
-                  errorMessage={fieldState.error?.message}
-                />
-              )}
-            />
-            <Controller
-              name="password"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Input
-                  {...field}
-                  type="password"
-                  label="Password"
-                  size="sm"
-                  isInvalid={Boolean(fieldState.error)}
-                  errorMessage={fieldState.error?.message}
-                />
-              )}
-            />
-            <Button type="submit" color="primary">
-              Sign up
-            </Button>
-          </form>
-        </CardBody>
-        {/* to itu isinya link tujuan page */}
-        <CardFooter className="flex justify-center">
-          <Link to="/wishlist" className="text-blue-500 hover:underline">
-            To Wishlist Page
-          </Link>
-        </CardFooter>
-      </Card>
-    </div>
+              <Controller
+                name="email"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Input
+                    {...field}
+                    type="email"
+                    label="Email"
+                    size="sm"
+                    isInvalid={Boolean(fieldState.error)}
+                    errorMessage={fieldState.error?.message}
+                  />
+                )}
+              />
+              <Controller
+                name="username"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Input
+                    {...field}
+                    label="Username"
+                    size="sm"
+                    isInvalid={Boolean(fieldState.error)}
+                    errorMessage={fieldState.error?.message}
+                  />
+                )}
+              />
+              <Controller
+                name="password"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Input
+                    {...field}
+                    type="password"
+                    label="Password"
+                    size="sm"
+                    isInvalid={Boolean(fieldState.error)}
+                    errorMessage={fieldState.error?.message}
+                  />
+                )}
+              />
+              <Button type="submit" color="primary">
+                Sign up
+              </Button>
+            </form>
+          </CardBody>
+          {/* to itu isinya link tujuan page */}
+          <CardFooter className="flex justify-center">
+            <Link to="/wishlist" className="text-blue-500 hover:underline">
+              To Wishlist Page
+            </Link>
+          </CardFooter>
+        </Card>
+      </div>
+    </SignUpContextProvider>
   );
 };
 

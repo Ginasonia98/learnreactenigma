@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   Navbar,
   NavbarBrand,
@@ -10,11 +11,13 @@ import {
   DropdownMenu,
   Avatar,
   Input,
-  Button,
+  // Button,
 } from "@nextui-org/react";
 import PropTypes from "prop-types"; // Import PropTypes
 import Heading from "./Heading";
-import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+// import { useEffect } from "react";
+import { useState } from "react";
 //Ini adalah utilitas dari pustaka prop-types yang digunakan untuk mendefinisikan
 // dan memvalidasi tipe properti (props) yang diterima oleh suatu komponen. Ini
 // membantu memastikan tipe data yang benar dan menghindari kesalahan saat runtime.
@@ -92,40 +95,45 @@ SearchIcon.propTypes = {
 //ditampilkan di konsol saat pengembangan.
 
 const Header = () => {
-  const [message, setMessage] = useState("Hello World");
+  // const [message, setMessage] = useState("Hello World");
   const [username, setUsername] = useState(useParams().username);
+  const navigate = useNavigate(); // Inisialisasi navigate
 
   //componentDidMount
-  useEffect(() => {
-    alertUser();
-    //akan ketrigger pada komponen willunmount
-    return () => {
-      alert("WILL UNMOUNT");
-    };
-  }, []);
-  const alertUser = () => {
-    alert("DID MOUNT");
-  };
+  // useEffect(() => {
+  //   alertUser();
+  //   //akan ketrigger pada komponen willunmount
+  //   return () => {
+  //     alert("WILL UNMOUNT");
+  //   };
+  // }, []);
+  // const alertUser = () => {
+  //   alert("DID MOUNT");
+  // };
 
-  //componentdidupdate dan component didmount
-  useEffect(() => {
-    alert("DID UPDATE");
-  }, [message]); //array of depedencies
+  // //componentdidupdate dan component didmount
+  // useEffect(() => {
+  //   alert("DID UPDATE");
+  // }, [message]); //array of depedencies
 
-  const changeMessage = () => {
-    setMessage("State Changed");
-  };
+  // const changeMessage = () => {
+  //   setMessage("State Changed");
+  // };
 
   const handleLogout = () => {
     setUsername(null); // Menghapus username
     alert("You have been logged out."); // Opsional: Berikan konfirmasi
+    navigate("/sign-up"); // Navigasi ke halaman sign-up setelah logout
+  };
+
+  const goToProfile = () => {
+    // Navigasi ke halaman profil dengan username yang tepat
+    navigate(`/profile/${username}`);
   };
 
   return (
     <Navbar isBordered>
-      {/* isBordered: Menambahkan garis batas di navbar. */}
       <NavbarContent justify="start">
-        {/* justify="start": Menyusun konten di sebelah kiri. */}
         <NavbarBrand className="mr-4">
           <div className="text-purple-600">
             <AcmeLogo />
@@ -134,8 +142,6 @@ const Header = () => {
             Enigma
           </p>
         </NavbarBrand>
-        {/* Teks "ACME" ditampilkan hanya pada layar besar (menggunakan kelas 
-        hidden sm:block). */}
         <NavbarContent className="hidden sm:flex gap-3">
           <NavbarItem>
             <Link color="foreground" href="#">
@@ -153,11 +159,7 @@ const Header = () => {
             </Link>
           </NavbarItem>
         </NavbarContent>
-        {/* NavbarItem: Setiap item dalam navbar.
-        Link: Setiap item navbar adalah tautan yang dapat diklik.
-        Item "Customers" diberi penanda aktif menggunakan isActive. */}
       </NavbarContent>
-
       <NavbarContent as="div" className="items-center" justify="end">
         <Input
           classNames={{
@@ -172,7 +174,6 @@ const Header = () => {
           startContent={<SearchIcon size={18} />}
           type="search"
         />
-        {/* Bidang input yang sudah ditata, dengan ikon pencarian di sisi kiri. */}
         <Dropdown placement="bottom-end">
           <DropdownTrigger>
             <Avatar
@@ -190,24 +191,22 @@ const Header = () => {
               <p className="font-semibold">Signed in as</p>
               <p className="font-semibold">{username}</p>
             </DropdownItem>
-            <DropdownItem key="settings">My Settings</DropdownItem>
+            {/* "My Settings" mengarah ke /profile/:username */}
+            <DropdownItem key="settings" onPress={goToProfile}>
+              My Settings
+            </DropdownItem>
             <DropdownItem key="team_settings">Team Settings</DropdownItem>
             <DropdownItem key="analytics">Analytics</DropdownItem>
             <DropdownItem key="system">System</DropdownItem>
             <DropdownItem key="configurations">Configurations</DropdownItem>
             <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-            <DropdownItem key="logout" color="danger" onClick={handleLogout}>
+            <DropdownItem key="logout" color="danger" onPress={handleLogout}>
               Log Out
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
-        {/* Avatar: Menampilkan avatar pengguna (gambar profil).
-        DropdownMenu: Menu dropdown yang berisi pilihan-pilihan seperti "Pengaturan",
-        "Keluar", dll. */}
       </NavbarContent>
-      <Heading>Header Custom</Heading>
-      <p>{message}</p>
-      <Button onClick={changeMessage}>Change Message</Button>
+      <Heading /> {/* Menjaga komponen Heading tetap ada */}
     </Navbar>
   );
 };

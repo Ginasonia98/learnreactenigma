@@ -6,6 +6,7 @@ import ProfilePage from "./components/pages/ProfilePage";
 import DashboardPage from "./components/pages/DashboardPage";
 import CounterPage from "./components/pages/CounterPage";
 import ActivitiesPage from "./components/pages/ActivitiesPage";
+import { SignInContextProvider } from "./context/SignInContext";
 
 // import { Toaster } from "sonner";
 // import ToDoApp from "./components/TodoApp";
@@ -21,19 +22,21 @@ function App() {
   return (
     <>
       {/* <Toaster position="top-left" /> */}
-      <Routes>
-        {/* Tujuan path ketika masuk url tujuan akan menampilkan element */}
-        {/* Definisikan route untuk halaman SignUp */}
-        <Route path="/sign-up" element={<SignUpPage />} />
-        {/* Definisikan route untuk halaman SignIn */}
-        <Route path="/sign-in" element={<SignInPage />} />
-        {/* Definisikan route untuk halaman Wishlist */}
-        <Route path="/wishlist" element={<WishlistPage />} />
-        <Route path="/profile/:username" element={<ProfilePage />} />
-        <Route path="/dashboard/:username" element={<DashboardPage />} />
-        <Route path="/" element={<CounterPage />} />
-        <Route path="/activity" element={<ActivitiesPage />} />
-      </Routes>
+      <SignInContextProvider>
+        <Routes>
+          {/* Tujuan path ketika masuk url tujuan akan menampilkan element */}
+          {/* Definisikan route untuk halaman SignUp */}
+          <Route path="/sign-up" element={<SignUpPage />} />
+          {/* Definisikan route untuk halaman SignIn */}
+          <Route path="/sign-in" element={<SignInPage />} />
+          {/* Definisikan route untuk halaman Wishlist */}
+          <Route path="/wishlist" element={<WishlistPage />} />
+          <Route path="/profile/:username" element={<ProfilePage />} />
+          <Route path="/dashboard/:username" element={<DashboardPage />} />
+          <Route path="/" element={<CounterPage />} />
+          <Route path="/activity" element={<ActivitiesPage />} />
+        </Routes>
+      </SignInContextProvider>
     </>
   );
 
