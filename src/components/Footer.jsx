@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import PropTypes from "prop-types"; // Import PropTypes untuk validasi props
-import { Button } from "@nextui-org/react"; 
+import { Button } from "@nextui-org/react";
 import { withBackground } from "../hoc/withBackground";
 
 class Footer extends React.Component {
@@ -20,18 +20,28 @@ class Footer extends React.Component {
 
   render() {
     return (
-      <footer className="bg-purple-600 text-white py-6">
+      <footer data-testid="footer" className="bg-purple-600 text-white py-6">
         {/* Container for the footer content */}
         <div className="container mx-auto text-center">
           <h3 className="text-2xl font-semibold mb-4">My Footer</h3>
           {/* Display the message passed from parent */}
-          <p className="text-lg">{this.props.message}</p>
+          <p data-testid="props-message" className="text-lg">
+            {this.props.message}
+          </p>
           {/* Display additional prop if any */}
-          <p className="text-lg">{this.props.propsTambahan}</p>
+          {/* <p data-testid="state-message" className="text-lg">
+            {this.props.propsTambahan}
+          </p> */}
           {/* Display local state */}
-          <p className="text-lg">{this.state.message}</p>
+          <p data-testid="state-message" className="text-lg">
+            {this.state.message}
+          </p>
           {/* Button to change state */}
-          <Button onPress={this.changeMessage} className="mt-4 bg-blue-500 hover:bg-blue-600">
+          <Button
+            data-testid="change-message-button"
+            onPress={this.changeMessage}
+            className="mt-4 bg-blue-500 hover:bg-blue-600"
+          >
             Change Message
           </Button>
         </div>
@@ -41,7 +51,7 @@ class Footer extends React.Component {
 }
 
 Footer.propTypes = {
-  message: PropTypes.string.isRequired, // Properti 'message' harus berupa string dan wajib diisi
+  message: PropTypes.string.isRequired, // Properti 'message' wajib
 };
 
 export default withBackground(Footer);

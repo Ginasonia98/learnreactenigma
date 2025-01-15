@@ -3,8 +3,8 @@ import { Card, CardHeader, CardBody, CardFooter,Divider,Button } from "@nextui-o
 
 const EventCard = ({ eventName, eventDate, isFree }) => {
   return (
-    <Card className="w-64 shadow-lg">
-      <CardHeader className="font-bold text-lg text-center">
+    <Card  data-testid="event-card"className="w-64 shadow-xl border border-amber-300">
+      <CardHeader className="font-bold text-lg text-center text-gray-600">
         {eventName}
       </CardHeader>
       <Divider />
@@ -13,7 +13,7 @@ const EventCard = ({ eventName, eventDate, isFree }) => {
         <p>Status: {isFree ? "Free" : "Paid"}</p>
       </CardBody>
       <CardFooter className="flex justify-center">
-      <Button color="primary" variant="shadow">
+      <Button color="secondary" variant="shadow">
         Register
       </Button>
       </CardFooter>

@@ -6,10 +6,10 @@ import { Routes, Route } from "react-router-dom";
 import ProfilePage from "./components/pages/ProfilePage";
 import ActivitiesPage from "./components/pages/ActivitiesPage";
 import { SignInContextProvider } from "./context/SignInContext";
+import EventCardPage from "./components/pages/EventCardPage";
 
 // import { Toaster } from "sonner";
 // import ToDoApp from "./components/TodoApp";
-// import EventCard from "./components/EventCard";
 // import { withTimeStamp } from "./hoc/withTimeStamp";
 // import TodoCard from "./components/TodoCard";
 // import Footer from "./components/Footer";
@@ -47,6 +47,7 @@ function App() {
             }
           />
           <Route path="/activity" element={<ActivitiesPage />} />
+          <Route path="/event-page" element={<EventCardPage />} />
         </Routes>
       </SignInContextProvider>
     </>
@@ -60,18 +61,7 @@ function App() {
   //         {/* <ToDoApp/> */}
   //         {/* <hr className="my-4" /> */}
 
-  //         {/* Contoh penggunaan EventCard */}
-  //         {/* <EventCard
-  //         eventName="React Workshop"
-  //         eventDate="2025-01-15"
-  //         isFree={true}
-  //       />
   //       <br />
-  //       <EventCard
-  //         eventName="Vue.js Conference"
-  //         eventDate="2025-02-10"
-  //         isFree={false}
-  //       /> */}
   //       </div>
   //     </main>
   //     <div className="flex items-center justify-center text-center">

@@ -1,13 +1,9 @@
+//counter.jsx
 import { Button } from "@nextui-org/button";
 import { Divider } from "@nextui-org/react";
 import { Input } from "@nextui-org/input";
-import { useState,useMemo } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-// Simulate a slow computation
-const slowDoubleNumber = (num) => {
-  return num * 2;
-};
 
 const Counter = () => {
   const selector = useSelector((store) => store.counter);
@@ -16,13 +12,6 @@ const Counter = () => {
 
   const [count, setCount] = useState(selector.count);
   const [inputCounter, setInputCounter] = useState(0);
-
-  // Use useMemo to optimize doubleNumberResult calculation
-  const doubleNumberResult = useMemo(() => {
-    return slowDoubleNumber(count);
-  }, [count]); // Recompute only when count changes
-  //simpan value dan akan kalkulasi ulang ketika yang didalam array
-  //misalnya count ada perubahan maka function akan dijalankan
 
   const incrementCounter = () => {
     setCount(count + 1);
@@ -43,14 +32,12 @@ const Counter = () => {
   };
 
   const setGlobalCounter = () => {
-    // Ensure inputCounter is a valid number
     if (!isNaN(inputCounter)) {
       dispatch({
         type: "SET",
         payload: inputCounter,
       });
     } else {
-      // Fallback to a default value if input is invalid
       dispatch({
         type: "SET",
         payload: 0,
@@ -70,7 +57,6 @@ const Counter = () => {
           Add
         </Button>
       </div>
-      <p className="text-center text-lg font-semibold">{doubleNumberResult}</p>
       <Divider />
       <h1 className="text-center">Global State Version</h1>
       <div className="flex items-center justify-around min-h-32">
@@ -105,7 +91,6 @@ const Counter = () => {
 };
 
 export default Counter;
-
 
 //menggunakan class component
 // class Counter extends React.Component {
